@@ -1,0 +1,60 @@
+SELECT *
+FROM students
+WHERE YEAR(date_of_birth) = 1990;
+
+SELECT cfu
+FROM courses
+WHERE cfu > 10;
+
+SELECT *
+FROM students
+WHERE date_of_birth < DATE_SUB(CURDATE(), INTERVAL 30 YEAR);
+
+SELECT *
+FROM courses
+WHERE year = 1 AND period LIKE 'I%';
+
+SELECT *
+FROM exams
+WHERE date = '2020-06-20' AND hour > '14:00:00'
+ORDER BY hour;
+
+SELECT *
+FROM degrees
+WHERE level LIKE 'Magistrale';
+
+SELECT COUNT(*) AS numero_dipartimenti
+FROM departments;
+
+SELECT *
+FROM teachers
+WHERE phone IS NULL;
+
+INSERT INTO students
+VALUES (50000, 30,'Luigi', 'Giordano', '1992-06-10', 'GRDLGU92H10F158A', '2025-02-03'. 10000, 'luigigiordano@gmail.com');
+
+SET SQL_SAFE_UPDATES = 0;
+
+UPDATE teachers
+SET office_number = 126
+WHERE name = 'Pietro' AND surname = 'Rizzo';
+
+DELETE FROM `students`
+WHERE `id` = 10000
+
+SELECT COUNT(*) AS NumeroStudenti, YEAR(enrolment_dat`) AS AnnoIscrizione
+FROM students
+GROUP BY AnnoIscrizione
+ORDER BY AnnoIscrizione;
+
+SELECT COUNT(*), office_address
+FROM teachers
+GROUP BY`office_address
+
+SELECT AVG(vote) AS MediaVoti, exam_id
+FROM exam_student
+GROUP BY exam_id;
+
+SELECT COUNT(*) AS NumeroCorsi, degree_id AS CorsoDiLaurea
+FROM courses
+GROUP BY CorsoDiLaurea;
