@@ -1,0 +1,36 @@
+SELECT students.*
+FROM students
+JOIN degrees ON students.degree_id = degrees.id
+WHERE degrees.name = 'Corso di Laurea in Economia';
+
+SELECT degrees.*, departments.name AS nome_dipartimento
+FROM degrees
+JOIN departments ON degrees.department_id = departments.id
+WHERE departments.name = 'Dipartimento di Neuroscienze' AND degrees.level = 'magistrale';
+
+SELECT courses.*, teachers.id, teachers.name AS nome_insegnante, teachers.surname AS cognome_insegnante
+FROM courses
+JOIN course_teacher ON courses.id = course_teacher.course_id
+JOIN teachers ON course_teacher.teacher_id = teachers.id
+WHERE teachers.id = 44;
+
+SELECT students.*, degrees.name AS corso_laurea, departments.name AS nome_dipartimento
+FROM students
+JOIN degrees ON students.degree_id = degrees.id
+JOIN departments ON degrees.department_id = departments.id
+ORDER BY students.surname, students.name;
+
+SELECT degrees.name AS corso_laurea, courses.id, courses.name AS sottocorso_laurea, teachers.name AS nome_insegnante, teachers.surname AS cognome_insegnante
+FROM degrees
+JOIN courses ON degrees.id = courses.degree_id
+JOIN course_teacher ON courses.id = course_teacher.course_id
+JOIN teachers ON course_teacher.teacher_id = teachers.id;
+
+SELECT teachers.name AS nome_insegnante, teachers.surname AS cognome_insegnante, teachers.id
+FROM teachers
+JOIN course_teacher ON teachers.id = course_teacher.teacher_id
+JOIN courses ON course_teacher.course_id = courses.id
+JOIN degrees ON courses.degree_id = degrees.id
+JOIN departments ON degrees.department_id = departments.id
+WHERE departments.name = 'Dipartimento di Matematica'
+ORDER BY nome_insegnante, cognome_insegnante;
